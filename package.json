@@ -1,6 +1,6 @@
 {
   "name": "@motardo/nouislider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React controlled component wrapper for nouislider",
   "main": "build/index.js",
   "peerDependencies": {},

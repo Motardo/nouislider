@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
   entry: './src/index.jsx',
   output: {
@@ -19,9 +20,13 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
+      },
     ],
   },
   externals: {
-    'react': 'commonjs react',
+    react: 'commonjs react',
   },
 };

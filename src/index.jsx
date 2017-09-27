@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import nouislider from 'nouislider';
-// import '../node_modules/nouislider/distribute/nouislider.css';
+import '../node_modules/nouislider/distribute/nouislider.css';
 
 function Slider(props) {
   return (
@@ -12,9 +12,6 @@ function Slider(props) {
 class NoUiSlider extends React.Component {
   constructor(props) {
     super(props);
-    /* this.state = {
-      values: this.props.options.start,
-    }; */
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -45,14 +42,8 @@ class NoUiSlider extends React.Component {
   }
 
   render() {
-    return (
-      <div className="bar">
-        {
-        // eslint-disable-next-line no-return-assign
-        }<Slider slider={el => this.sliderElement = el} />
-        <p>{this.props.values.toString()}</p>
-      </div>
-    );
+    // eslint-disable-next-line no-return-assign
+    return <Slider slider={el => this.sliderElement = el} />;
   }
 }
 

@@ -18,6 +18,11 @@ class NoUiSlider extends React.Component {
   componentDidMount() {
     nouislider.create(this.sliderElement, this.props.options);
     this.sliderElement.noUiSlider.on('update', this.handleUpdate);
+    const connectClass = this.props.options.connectClass;
+    if (connectClass) {
+      const connectElements = this.sliderElement.querySelectorAll('.noUi-connect');
+      connectElements.forEach((segment, index) => segment.classList.add(connectClass[index]));
+    }
   }
 
   componentWillReceiveProps(nextProps) {

@@ -11,9 +11,9 @@ function Slider(props) {
 class NoUiSlider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    /* this.state = {
       values: this.props.options.start,
-    };
+    }; */
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -22,15 +22,28 @@ class NoUiSlider extends React.Component {
     this.sliderElement.noUiSlider.on('update', this.handleUpdate);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if ((this.sliderElement || {}).noUiSlider) {
+      const current = this.sliderElement.noUiSlider.get();
+      const update = Array(current.length).fill(null);
+      current.forEach((value, index) => {
+        if (value !== nextProps.values[index]) update[index] = nextProps.values[index];
+      });
+      if (update.some(el => el !== null)) {
+        this.sliderElement.noUiSlider.set(update);
+      }
+    }
+  }
+
   handleUpdate(newValues) {
-    this.setState({ values: newValues });
+    this.props.onUpdate(newValues);
   }
 
   render() {
     return (
       <div className="bar">
         <Slider slider={el => this.sliderElement = el} />
-        <p>{this.state.values.toString()}</p>
+        <p>{this.props.values.toString()}</p>
       </div>
     );
   }

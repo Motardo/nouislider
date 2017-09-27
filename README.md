@@ -44,6 +44,7 @@ export default App;
 To run the demo app
 ```sh
 npm install @motardo/nouislider
-cd $(npm bin)/demo
+cd node_modules/@motardo/nouislider/demo
+npm install
 npm start
 ```

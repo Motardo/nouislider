@@ -30,17 +30,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleSliderUpdate = this.handleSliderUpdate.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.state = { sliderValues: [1200, 1800] };
   }
 
   handleSliderUpdate(values) {
     this.setState({ sliderValues: values });
-  }
-
-  handleInputChange(e) {
-    const oldValues = this.state.sliderValues;
-    this.setState({ sliderValues: [e.target.value, oldValues[1]] });
   }
 
   render() {
@@ -76,8 +70,8 @@ class App extends Component {
           />
         </div>
         <p>Raw values: {this.state.sliderValues.toString()}</p>
-        <input readOnly value={formatTime(this.state.sliderValues[0])} onChange={this.handleInputChange} type="text" />
-        <input readOnly value={formatTime(this.state.sliderValues[1])} onChange={this.handleInputChange} type="text" />
+        <input readOnly value={formatTime(this.state.sliderValues[0])} type="text" />
+        <input readOnly value={formatTime(this.state.sliderValues[1])} type="text" />
       </div>
     );
   }

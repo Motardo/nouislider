@@ -14,18 +14,16 @@ class NoUiSlider extends React.Component {
     this.state = {
       values: this.props.options.start,
     };
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   componentDidMount() {
     nouislider.create(this.sliderElement, this.props.options);
-    /* nouislider.create(this.sliderElement, {
-      start: this.state.values,
-      connect: true,
-      range: {
-        min: 0,
-        max: 100,
-      },
-    }); */
+    this.sliderElement.noUiSlider.on('update', this.handleUpdate);
+  }
+
+  handleUpdate(newValues) {
+    this.setState({ values: newValues });
   }
 
   render() {

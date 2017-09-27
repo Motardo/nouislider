@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import nouislider from 'nouislider';
 // import '../node_modules/nouislider/distribute/nouislider.css';
 
@@ -35,6 +36,10 @@ class NoUiSlider extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.sliderElement.noUiSlider.destoy();
+  }
+
   handleUpdate(newValues) {
     this.props.onUpdate(newValues);
   }
@@ -42,7 +47,9 @@ class NoUiSlider extends React.Component {
   render() {
     return (
       <div className="bar">
-        <Slider slider={el => this.sliderElement = el} />
+        {
+        // eslint-disable-next-line no-return-assign
+        }<Slider slider={el => this.sliderElement = el} />
         <p>{this.props.values.toString()}</p>
       </div>
     );
@@ -50,3 +57,13 @@ class NoUiSlider extends React.Component {
 }
 
 export default NoUiSlider;
+
+NoUiSlider.propTypes = {
+  values: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  options: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  onUpdate: PropTypes.func.isRequired,
+};
+
+Slider.propTypes = {
+  slider: PropTypes.func.isRequired,
+};

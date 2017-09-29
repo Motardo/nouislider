@@ -20,6 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Slider Example</h1>
         <NoUiSlider
           values={this.state.sliderValues}
           onUpdate={this.handleSliderUpdate}
